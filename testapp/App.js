@@ -25,7 +25,7 @@ const instructions = Platform.select({
 });
 */
 
-export default class App extends Component<{}> {
+export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -38,7 +38,7 @@ export default class App extends Component<{}> {
             <Text
             style = {styles.capture}
             onPress={this.takePicture.bind(this)}>
-              Capture Image
+              Capture
             </Text>
         </Camera>
 
@@ -46,13 +46,12 @@ export default class App extends Component<{}> {
     );
   }
 
-  takePicture(){
-    const options = {}
-    this.camera.capture({metadata: options}).then((data) => {
-      console.log(data)
-    }).catch((error) => {
-      console.log(error)
-    })
+  takePicture() {
+    const options = {};
+    //options.location = ...
+    this.camera.capture({metadata: options})
+      .then((data) => console.log(data))
+      .catch(err => console.error(err));
   }
 }
 
@@ -76,3 +75,5 @@ const styles = StyleSheet.create({
   }
 
 });
+
+AppRegistry.registerComponent('testapp', () => testapp);
