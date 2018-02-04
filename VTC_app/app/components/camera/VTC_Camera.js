@@ -3,10 +3,12 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {AppRegistry, Text, View, StyleSheet} from 'react-native';
-import Camera from 'react-native-camera'
+import {AppRegistry, Text, View, StyleSheet, BackHandler} from 'react-native';
+import Camera from 'react-native-camera';
+import PhotosMenu from './PhotosMenu';
 
 export default class VTC_Camera extends Component{
+
     render(){
         return(
             <View style={styles.container}>
@@ -33,7 +35,7 @@ export default class VTC_Camera extends Component{
         this.camera.capture({metadata: options})
           .then((data) => console.log(data))
           .catch(err => console.error(err));
-      }
+    }
 }
 
 const styles = StyleSheet.create({
@@ -54,6 +56,7 @@ const styles = StyleSheet.create({
       padding: 15,
       margin: 45
     }
+    
   
   });
 
