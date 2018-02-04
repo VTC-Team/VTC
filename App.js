@@ -1,87 +1,33 @@
-/*import React, {Component} from 'react';
-import { AppRegistry, Text, View, StackNavigator } from 'react-native';
-import FirstPage from './app/components/FirstPage/FirstPage';
-//import NavigationExperimental from 'react-native-deprecated-custom-components';
-//import { Button, Card } from 'react-native-material-design';
-//import DisplayAnImage from './app/components/DisplayAnImage/DisplayAnImage';
-import Login from './app/components/Login/Login';
-
-export default class MyProject extends Component {
-
-  renderScene(route, navigator){
-    switch(route.id){
-       case 'firstpage':
-         return (<FirstPage navigator = {navigator} title = 'firstpage' />)
-       case 'login':
-                return (<Login navigator = {navigator} title = 'login' />)
-    }
-  }
-  render() {
-    return (
-      <StackNavigator
-        initialRoute = {{id: 'firstpage'}}
-        renderScene = {this.renderScene}
-        configureScreen = {(route,routeStack) => Navigator.SceneConfigs.FloatFromBottom}
-      />
-    );
-  }
-}
-
-AppRegistry.registerComponent('MyProject', () => MyProject);
-*/
-
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button,StyleSheet,TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation'; // 1.0.0-beta.14
 import FirstPage from './app/components/FirstPage/FirstPage';
 import Login from './app/components/Login/Login';
+import CreateAccount from './app/components/CreateAccount/CreateAccount';
 
-/*
-const FirstPage = ({ navigation }) => (
-  <View>
-  <FirstPage />
-    <Button
-      onPress={() => navigation.navigate('Login')}
-      title="Go to login"
-    />
-  </View>
-);
-
-const login = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Details Screen</Text>
-  </View>
-);
-
-const RootNavigator = StackNavigator({
-  FirstPage: {
-    screen: FirstPage,
-    navigationOptions: {
-      headerTitle: 'FirstPage',
-    },
-  },
-  Login: {
-    screen: login,
-    navigationOptions: {
-      headerTitle: 'Login',
-    },
-  },
-});
-
-export default RootNavigator;
-*/
 const HomeScreen = ({ navigation }) => (
   <View>
     <FirstPage />
+    <TouchableOpacity>
     <Button
-      onPress={() => navigation.navigate('Details')}
+      onPress={() => navigation.navigate('login')}
       title="Go to Log in"
+      color = "green"
     />
+    <Button
+      onPress={() => navigation.navigate('createaccount')}
+      title="Create Account"
+    />
+    </TouchableOpacity>
   </View>
 );
 
-const DetailsScreen = () => (
+const LoginScreen = () => (
   <Login />
+);
+
+const CreateAccountScreen = () => (
+  <CreateAccount />
 );
 
 const RootNavigator = StackNavigator({
@@ -91,10 +37,16 @@ const RootNavigator = StackNavigator({
       headerTitle: 'Welcome',
     },
   },
-  Details: {
-    screen: DetailsScreen,
+  login: {
+    screen: LoginScreen,
     navigationOptions: {
       headerTitle: 'Log in',
+    },
+  },
+  createaccount: {
+    screen: CreateAccountScreen,
+    navigationOptions: {
+      headerTitle: 'Create Account',
     },
   },
 });

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, TextInput,StyleSheet,Switch } from 'react-native';
-
-//import Login from './src/screens/Login';
-//import Secured from './src/screens/Secured';
+import { AppRegistry, Text, View, TextInput,StyleSheet,Switch,Button,TouchableOpacity } from 'react-native';
 
 export default class Login extends Component {
 
@@ -19,6 +16,10 @@ export default class Login extends Component {
     });
   }
 
+  onPress(){
+    console.log("area is pressed");
+  }
+
   render() {
     return(
         <View>
@@ -29,11 +30,15 @@ export default class Login extends Component {
             <TextInput
                 placeholder="Enter password"
             />
-            <Text style={styles.h2}>Log in</Text>
-            <Switch
-                value = {this.state.switchValue}
-                onValueChange = {(value) => this.onSwitchChange (value)}
-            />
+            <TouchableOpacity>
+                <View>
+                <Button
+                   onPress={this.onPress}
+                   title="Login"
+                   color = "green"
+                />
+                </View>
+            </TouchableOpacity>
         </View>
     );
   }
