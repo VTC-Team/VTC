@@ -1,17 +1,17 @@
-// Code from https://www.codementor.io/blessingoraz/access-camera-roll-with-react-native-9uwupuuy0
+// Gets photos from camera roll
 
 
 import React, { Component } from 'react';
 import {
-    CameraRoll, Image, StyleSheet, TouchableHighlight, View,
+    CameraRoll, Image, StyleSheet, TouchableHighlight, View, AppRegistry
 } from 'react-native';
 import ViewPhotos from './ViewPhotos';
 
 
-class VTC_CameraRoll extends Component {
+export default class VTC_CameraRoll extends Component {
+
 
     state = {
-        showPhotoGallery: false,
         photoArray: []
     }
 
@@ -19,26 +19,16 @@ class VTC_CameraRoll extends Component {
         CameraRoll.getPhotos({ first: 1000000 })
             .then(res => {
                 let photoArray = res.edges;
-                this.setState({ showPhotoGallery: true, photoArray: photoArray })
+                this.setState({ photoArray: photoArray })
             })
     }
 
     render() {
-        if (this.state.showPhotoGallery){
-            return (
-                <ViewPhotos
-                    photoArray={this.state.photoArray} />
-            )
-        }
+        this.getPhotosFromGallery();
         return(
-            <View style={styles.container}>
-                <TouchableHighlight
-                    onPress={() => this.getPhotosFromGallery()}>
-                    <Image 
-                        style={styles.add}
-                        source={require('./assets/add.png')} />
-                </TouchableHighlight>
-            </View>
+            
+            <ViewPhotos
+                    photoArray={this.state.photoArray} />
         );
     }
 
@@ -57,4 +47,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default VTC_CameraRoll;
+AppRegistry.registerComponent('VTC_CameraRoll', () => VTC_CameraRoll);

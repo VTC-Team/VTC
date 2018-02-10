@@ -1,12 +1,22 @@
+// displays photos from camera roll in grid
+
 import React, { Component } from 'react';
 import {
-    Image, View, ListView, StyleSheet, Text, TouchableHighlight
+    Image, View, ListView, StyleSheet, Text, TouchableHighlight, AppRegistry
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
 import SelectedPhoto from './SelectedPhoto';
 
 
 class ViewPhotos extends Component {
+
+
+
+    static camroll = {
+        title: 'Photo Listing',
+    };
+
     state = {
         ds: new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
@@ -14,12 +24,13 @@ class ViewPhotos extends Component {
         showSelectedPhoto: false,
         uri: ''
     }
-
+    
     renderRow(rowData) {
         const { uri } = rowData.node.image;
+        const { navigate } = this.props.navigation;
         return (
             <TouchableHighlight
-                onPress={() => this.setState({ showSelectedPhoto: true, uri: uri})}>
+                onPress={() => navigate('PhotoPreview')}>
                 <Image
                     source={{ uri: rowData.node.image.uri }}
                     style={styles.image} />
@@ -29,13 +40,7 @@ class ViewPhotos extends Component {
 
     render(){
         const { showSelectedPhoto, uri } = this.state;
-
-        if(showSelectedPhoto){
-            return (
-                <SelectedPhoto 
-                    uri={uri} />
-            )
-        }
+        
         return (
             <View style={{ flex: 1}}>
                 <View style={{ alignItems: 'center', marginTop: 15}}>
@@ -50,6 +55,11 @@ class ViewPhotos extends Component {
         );
     }
 }
+
+const camroll = StackNavigator({
+    PhotoListing: {screen: ViewPhotos },
+    PhotoPreview: {screen: SelectedPhoto }
+})
 
 const styles = StyleSheet.create({
     list: {
@@ -68,4 +78,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ViewPhotos;
+export default camroll;

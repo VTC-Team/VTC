@@ -5,9 +5,9 @@
 import React, {Component} from 'react';
 import {AppRegistry, Text, View, StyleSheet, BackHandler} from 'react-native';
 import Camera from 'react-native-camera';
-import PhotosMenu from './PhotosMenu';
 
 export default class VTC_Camera extends Component{
+
 
     render(){
         return(
@@ -56,8 +56,6 @@ const styles = StyleSheet.create({
       padding: 15,
       margin: 45
     }
-    
-  
   });
 
-AppRegistry.registerComponent('VTC_Camera', () => VTC_Camera)
+  AppRegistry.registerComponent('VTC_Camera', () => VTC_Camera);

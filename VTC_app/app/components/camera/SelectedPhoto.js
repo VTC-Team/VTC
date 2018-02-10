@@ -1,3 +1,5 @@
+// displays selected photo
+
 import React from 'react';
 import{
     Image, View, StyleSheet, Text, TouchableHighlight
@@ -21,8 +23,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     image: {
-        height: 300,
-        width: 200
+        height: 500,
+        width: 400
     }
 });
 
