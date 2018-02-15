@@ -1,0 +1,167 @@
+---------------------------------
+FIREBASE
+//Command line, use npm install --save firebase
+
+//in any files where we need firebase
+===
+import * as firebase from "firebase";
+===
+
+//in initial usage
+firebase.initializeApp({    
+    apiKey: "AIzaSyB2soQv_Fh1UdOVA8Zg8vOr_eR0CzjAHWE",
+    authDomain: "virtual-time-capsule-cf695.firebaseapp.com",
+    databaseURL: "https://virtual-time-capsule-cf695.firebaseio.com",
+    projectId: "virtual-time-capsule-cf695",
+    storageBucket: "virtual-time-capsule-cf695.appspot.com",
+    messagingSenderId: "62193311413"
+});
+
+//keep user and firebase synced
+firebase.auth().onAuthStateChanged(function(user) {
+ window.user = user; // user is undefined if no user signed in
+});
+
+//SIGNUP
+async signup(email, pass) {
+    try {
+        await firebase.auth().createUserWithEmailAndPassword(email, pass);
+        // User is automatically logged in
+        // Navigate to home screen
+    } catch (error) {
+        console.log(error.toString())
+        // Navigate to signup screen
+    }
+}
+
+//SIGNIN
+async login(email, pass) {
+    try {
+        await firebase.auth().signInWithEmailAndPassword(email, pass);
+        // Navigate to home screen
+    } catch (error) {
+        console.log(error.toString())
+        // Navigate to login screen
+    }
+}
+
+//LOGOUT
+async logout() {
+    try {
+        await firebase.auth().signOut();
+        // Navigate to login screen
+    } catch (error) {
+        console.log(error);
+        // Navigate to home screen
+    }
+}
+
+
+
+//User details
+var user = firebase.auth().currentUser;
+var name, email, photoUrl, uid, emailVerified;
+if (user != null) {
+  name = user.displayName;
+  email = user.email;
+  photoUrl = user.photoURL;
+  emailVerified = user.emailVerified;
+  uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                   // this value to authenticate with your backend server, if
+                   // you have one. Use User.getToken() instead.
+} else {
+  // No user is signed in.
+}
+//other useful functions
+user.sendPasswordResetEmail(“bill-murray@gmail.com”); // Sends a temporary password
+// Re-authentication is necessary for email, password and delete functions
+var credential = firebase.auth.EmailAuthProvider.credential(email, password);
+user.reauthenticate(credential);
+user.updateEmail(“bill-murray@gmail.com”);
+user.updatePassword(newPassword).then(function() {
+  // Update successful.
+}).catch(function(error) {
+  // An error happened.
+});
+user.delete();
+
+
+//sets database values
+static setUserDBName(userId, value) {
+    let userDBPath = "/user/" + userId + "/details";
+    return firebase.database().ref(userDBPath).set({
+        DB: value
+    })
+}
+
+//Email verification for use in signup
+var user = firebase.auth().currentUser;
+user.sendEmailVerification().then(function() {
+  // Email sent.
+}).catch(function(error) {
+  // An error happened.
+});
+
+// Authenticate with the first user then save the currentUser to a local variable
+var previousUser = firebase.auth().currentUser;
+// Authenticate with a second method and get a credential
+// This example shows an email/password credential, but you can get credentials from any auth provider
+// Note that using an OAuth provider as your se
+var credential = firebase.auth.EmailPasswordAuthProvider.credential(email, password);
+previousUser.link(credential)
+ .catch(function (error) {
+   // Linking will often fail if the account has already been linked. Handle these cases manually.
+ });
+
+// OAuth providers authenticate in an asynchronous manner, so you’ll want to perform the link account link in the callback.
+var previousUser = firebase.auth().currentUser;
+firebase.auth().signInWithPopup(new firebase.authGoogleAuthProvider())
+ .then(function (result) {
+ return previousUser.link(result.credential);
+ })
+ .catch(function (err) {
+   // Handle error
+ });
+
+//IMAGES
+//Firebase
+FirebaseStorage storage;
+StorageReference storageReference;
+
+storage = FirebaseStorage.getInstance();
+storageReference = storage.getReference();
+
+private void uploadImage() {
+ 
+  if(filePath != null)
+  {
+    final ProgressDialog progressDialog = new ProgressDialog(this);
+    progressDialog.setTitle("Uploading...");
+    progressDialog.show();
+ 
+    StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+    ref.putFile(filePath)
+            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+              @Override
+              public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                progressDialog.dismiss();
+                Toast.makeText(MainActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+              }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+              @Override
+              public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(MainActivity.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+              }
+            })
+            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+              @Override
+              public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                        .getTotalByteCount());
+                progressDialog.setMessage("Uploaded "+(int)progress+"%");
+              }
+            });
+  }
+}
