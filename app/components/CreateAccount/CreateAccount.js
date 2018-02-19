@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import { AppRegistry, Text, View, TextInput,StyleSheet,TouchableOpacity,Button } from 'react-native';
 import { Pages } from 'react-native-pages';
 import CheckBox from 'react-native-checkbox';
+import { StackNavigator } from 'react-navigation';
+import AddFriends from '../AddFriends/AddFriends';
 
 export default class CreateAccount extends Component {
-
+    /*static navigationOptions = {
+        title: "Welcome"
+    }*/
     onPress(){
         console.log("area is pressed");
     }
   render() {
+    //const { navigation } = this.props.navigation
+    //navigate = this.props.navigation
     return(
         <Pages>
         <View>
@@ -38,9 +44,11 @@ export default class CreateAccount extends Component {
             />
             <TouchableOpacity>
                 <Button
+                  navigation={this.props.navigation}
                   onPress={this.onPress}
                   title="Create Account"
                   color = "green"
+                  //onPress={() => this.props.navigation.navigate("AddFriends", {screen: "Add Friends"})}
                 />
             </TouchableOpacity>
         </View>
@@ -63,6 +71,9 @@ const styles = StyleSheet.create({
         marginBottom: 90
     },
 });
+
+
+
 
 
 AppRegistry.registerComponent('CreateAccount' , () => CreateAccount );

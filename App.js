@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, Button,StyleSheet,TouchableOpacity } from 'react-native';
-import { StackNavigator } from 'react-navigation'; // 1.0.0-beta.14
+import { StackNavigator } from 'react-navigation';
 import FirstPage from './app/components/FirstPage/FirstPage';
 import Login from './app/components/Login/Login';
 import CreateAccount from './app/components/CreateAccount/CreateAccount';
+import AddFriends from './app/components/AddFriends/AddFriends';
 
 const HomeScreen = ({ navigation }) => (
   <View>
@@ -28,6 +29,7 @@ const LoginScreen = () => (
 
 const CreateAccountScreen = () => (
   <CreateAccount />
+  //<AddFriends />
 );
 
 const RootNavigator = StackNavigator({
