@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import {
     CameraRoll, Image, StyleSheet, TouchableHighlight, View, AppRegistry, Modal,  Button, ScrollView, Dimensions
 } from 'react-native';
-import ViewPhotos from './ViewPhotos';
 
 const { width } = Dimensions.get('window')
 
@@ -15,15 +14,10 @@ export default class VTC_CameraRoll extends Component {
     state = {
         photoArray: [],
         modalVisible: false,
-        index: null
+        selectArray: [],
+        uriIndex: []
     }
 
-    setIndex = (index) => {
-        if(index === this.state.index){
-            index = null
-        }
-        this.setState({ index })
-    }
 
     getPhotosFromGallery() {
         CameraRoll.getPhotos({ first: 20})
@@ -31,6 +25,27 @@ export default class VTC_CameraRoll extends Component {
                 let photoArray = res.edges;
                 this.setState({ photoArray: photoArray })
             })
+    }
+
+    locationIfSelected(index){
+        for(var i = 0; i < this.state.selectArray.length; i++){
+            if(this.state.selectArray[i] === index){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    selectOrUnselect(index, uriIndex){
+        var photoIndex = this.locationIfSelected(index);
+        if(photoIndex >= 0){
+            this.state.selectArray.splice(photoIndex, 1);
+            this.state.uriIndex.splice(photoIndex, 1);
+        }
+        else{
+            this.state.selectArray.push(index);
+            this.state.uriIndex.push(index);
+        }
     }
 
     render() {
@@ -43,10 +58,10 @@ export default class VTC_CameraRoll extends Component {
                     this.state.photoArray.map((p, i) => {
                         return(
                             <TouchableHighlight
-                                style={{opacity: i === this.state.index ? 0.5 : 1}}
+                                style={{opacity: (this.locationIfSelected(i) >= 0) ? 0.5 : 1}}
                                 key={i}
                                 underlayColor='transparent'
-                                onPress={() => this.setIndex(i)}
+                                onPress={() => this.selectOrUnselect(i, p)}
                             >
                                 <Image
                                     style={{

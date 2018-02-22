@@ -23,6 +23,7 @@ export default class VTC_Camera extends Component{
                     onPress={this.takePicture.bind(this)}>
                     Capture
                     </Text>
+
                 </Camera>
 
             </View>
