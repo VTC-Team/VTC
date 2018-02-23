@@ -44,7 +44,7 @@ export default class VTC_CameraRoll extends Component {
         }
         else{
             this.state.selectArray.push(index);
-            this.state.uriIndex.push(index);
+            this.state.uriIndex.push(uriIndex);
         }
     }
 
