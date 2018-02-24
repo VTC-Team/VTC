@@ -6,10 +6,15 @@ import {
     CameraRoll, Image, StyleSheet, TouchableHighlight, View, AppRegistry, Modal,  Button, ScrollView, Dimensions
 } from 'react-native';
 
-const { width } = Dimensions.get('window')
+import * as firebase from "firebase";
+//import Firebase from "./includes/firebase/firebase";
+
+const { width } = Dimensions.get('window');
+//src = "https://www.gstatic.com/firebasejs/4.10.1/firebase.js"
 
 export default class VTC_CameraRoll extends Component {
 
+    
 
     state = {
         photoArray: [],
@@ -17,7 +22,14 @@ export default class VTC_CameraRoll extends Component {
         selectArray: [],
         uriIndex: []
     }
+    //constructor(props) {
+        //Firebase.initialise();
+    //}
 
+    //IMAGES
+    //Firebase
+
+    
 
     getPhotosFromGallery() {
         CameraRoll.getPhotos({ first: 20})
@@ -36,7 +48,7 @@ export default class VTC_CameraRoll extends Component {
         return -1;
     }
 
-    selectOrUnselect(index, uriIndex){
+    selectOrUnselect(index, uri){
         var photoIndex = this.locationIfSelected(index);
         if(photoIndex >= 0){
             this.state.selectArray.splice(photoIndex, 1);
@@ -44,14 +56,13 @@ export default class VTC_CameraRoll extends Component {
         }
         else{
             this.state.selectArray.push(index);
-            this.state.uriIndex.push(uriIndex);
+            this.state.uriIndex.push(uri);
         }
     }
 
     render() {
         this.getPhotosFromGallery();
         return(
-           
             <ScrollView
                 contentContainerStyle={styles.scrollView}>
                 {
@@ -61,7 +72,7 @@ export default class VTC_CameraRoll extends Component {
                                 style={{opacity: (this.locationIfSelected(i) >= 0) ? 0.5 : 1}}
                                 key={i}
                                 underlayColor='transparent'
-                                onPress={() => this.selectOrUnselect(i, p)}
+                                onPress={() => this.selectOrUnselect(i, p.node.image.uri)}
                             >
                                 <Image
                                     style={{
@@ -70,12 +81,20 @@ export default class VTC_CameraRoll extends Component {
                                     }}
                                     source={{uri:p.node.image.uri}}
                                 />
+                                
                             </TouchableHighlight>
+                             
                         )
                     })
+                    
                 }
             </ScrollView>
         );
+
+        <Text
+            >
+            Upload
+        </Text>
     }
 
     
@@ -94,6 +113,10 @@ const styles = StyleSheet.create({
     scrollView: {
         flexWrap: 'wrap',
         flexDirection: 'row'
+    },
+    button: {
+        marginBottom: 20,
+        paddingHorizontal: 10
     }
 });
 
