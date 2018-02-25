@@ -11,7 +11,6 @@ import Firebase from "../../../includes/firebase/firebase";
 
 import RNFetchBlob from 'react-native-fetch-blob';
 const { width } = Dimensions.get('window');
-//src = "https://www.gstatic.com/firebasejs/4.10.1/firebase.js"
 
 // Prepare Blob support
 const Blob = RNFetchBlob.polyfill.Blob
@@ -25,9 +24,18 @@ export default class VTC_CameraRoll extends Component {
 
     constructor(props) {
         super(props);
-        Firebase.initialise();
+        
+        try{
+            Firebase.initialise();
+        }
+        catch (err) {
+            if (!/already exists/.test(err.message)) {
+            console.error('Firebase initialization error', err.stack)
+            }
+        }
         storageRef = firebase.storage().ref();
       }
+
 
     state = {
         photoArray: [],
@@ -35,10 +43,15 @@ export default class VTC_CameraRoll extends Component {
         selectArray: [],
         uriIndex: []
     }
+    //constructor(props) {
+        //Firebase.initialise();
+    //}
+
+    //IMAGES
+    //Firebase
 
     uploadImage = (uri, mime = 'application/octet-stream') => {
         return new Promise((resolve, reject) => {
-        //   const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
           const sessionId = new Date().getTime()
             let uploadBlob = null
             const imageRef = storageRef.child('Images').child(`${sessionId}` + '.jpg')

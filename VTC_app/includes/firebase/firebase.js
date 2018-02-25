@@ -18,8 +18,6 @@ class Firebase {
         });
         
     }
-    // storage = firebase.storage();
-    // storageRef = storage.ref();
 }
 
 module.exports = Firebase;
