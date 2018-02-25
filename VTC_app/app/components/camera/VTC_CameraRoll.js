@@ -36,12 +36,19 @@ export default class VTC_CameraRoll extends Component {
         storageRef = firebase.storage().ref();
       }
 
+
     state = {
         photoArray: [],
         modalVisible: false,
         selectArray: [],
         uriIndex: []
     }
+    //constructor(props) {
+        //Firebase.initialise();
+    //}
+
+    //IMAGES
+    //Firebase
 
     uploadImage = (uri, mime = 'application/octet-stream') => {
         return new Promise((resolve, reject) => {
