@@ -1,0 +1,27 @@
+{
+  "name": "VTC_app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "firebase": "^4.10.1",
+    "node-adb": "^0.1.6",
+    "react": "16.2.0",
+    "react-native": "0.52.2",
+    "react-native-camera": "^0.13.0",
+    "react-native-fetch-blob": "github:wkh237/react-native-fetch-blob-package",
+    "react-navigation": "^1.0.0-beta.30"
+  },
+  "devDependencies": {
+    "babel-jest": "22.1.0",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.1.4",
+    "react-test-renderer": "16.2.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
