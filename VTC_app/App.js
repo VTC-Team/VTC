@@ -22,7 +22,6 @@ const PhotoScreen = ({ navigation }) => (
           >
           Camera Roll
       </Text>
-            
     </View>
 
 );
