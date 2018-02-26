@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, TextInput,StyleSheet,TouchableOpacity,Button } from 'react-native';
+import { AppRegistry, Text, View, TextInput,StyleSheet,TouchableOpacity,Button, ScrollView } from 'react-native';
 import { Pages } from 'react-native-pages';
 import CheckBox from 'react-native-checkbox';
-import { StackNavigator } from 'react-navigation';
+//import { StackNavigator } from 'react-navigation';
 import AddFriends from '../AddFriends/AddFriends';
 
 export default class CreateAccount extends Component {
@@ -16,8 +16,9 @@ export default class CreateAccount extends Component {
     //const { navigation } = this.props.navigation
     //navigate = this.props.navigation
     return(
-        <Pages>
+        //<Pages>
         <View>
+        <ScrollView>
             <Text style = {styles.h1}>Create Account</Text>
             <CheckBox
                 label='Agree to user conditions'
@@ -51,8 +52,10 @@ export default class CreateAccount extends Component {
                   //onPress={() => this.props.navigation.navigate("AddFriends", {screen: "Add Friends"})}
                 />
             </TouchableOpacity>
+        </ScrollView>
         </View>
-        </Pages>
+        //</Pages>
+        //</ScrollView>
     );
   }
 }
@@ -68,7 +71,7 @@ const styles = StyleSheet.create({
         marginTop: 70,
         marginRight: 50,
         marginLeft: 50,
-        marginBottom: 90
+        marginBottom: 170
     },
 });
 

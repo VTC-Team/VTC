@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, Text, Button,StyleSheet,TouchableOpacity } from 'react-native';
+import { View, Text, Button,StyleSheet,TouchableOpacity, StatusBar } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import FirstPage from './app/components/FirstPage/FirstPage';
-import Login from './app/components/Login/Login';
-import CreateAccount from './app/components/CreateAccount/CreateAccount';
-import AddFriends from './app/components/AddFriends/AddFriends';
+import FirstPage from './src/FirstPage/FirstPage';
+import Login from './src/pages/Login';
+import Signup from './src/pages/Signup';
 
-const HomeScreen = ({ navigation }) => (
+/*const HomeScreen = ({ navigation }) => (
   <View>
     <FirstPage />
     <TouchableOpacity>
@@ -23,30 +22,30 @@ const HomeScreen = ({ navigation }) => (
   </View>
 );
 
-const LoginScreen = () => (
+const LoginScreen = ({ navigation }) => (
   <Login />
 );
 
-const CreateAccountScreen = () => (
-  <CreateAccount />
+const CreateAccountScreen = ({ navigation }) => (
+  <Signup />
   //<AddFriends />
-);
+);*/
 
 const RootNavigator = StackNavigator({
   Home: {
-    screen: HomeScreen,
+    screen: FirstPage,//HomeScreen,
     navigationOptions: {
       headerTitle: 'Welcome',
     },
   },
   login: {
-    screen: LoginScreen,
+    screen: Login,//LoginScreen,
     navigationOptions: {
       headerTitle: 'Log in',
     },
   },
   createaccount: {
-    screen: CreateAccountScreen,
+    screen: Signup,//CreateAccountScreen,
     navigationOptions: {
       headerTitle: 'Create Account',
     },
