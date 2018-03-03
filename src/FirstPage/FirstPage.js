@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import { StackNavigator } from 'react-navigation'; // 1.0.0-beta.14
-import { AppRegistry, Text, View, StyleSheet,TouchableHighlight,StatusBar} from 'react-native';
+import { AppRegistry, Text, View, StyleSheet,TouchableHighlight,StatusBar,Image} from 'react-native';
 import { Button } from 'react-native';
 //import Login from '../pages/Login';
 
-export default class FirstPage extends Component {
-  static navigationOptions = {
-      title: "Welcome"
-  }
+//import logo from '../images/logo.png';
 
+export default class FirstPage extends Component {
   blah = () => {
     console.log("props is here");
     navigate("Login", {screen: "Login"})
@@ -18,8 +16,10 @@ export default class FirstPage extends Component {
     const { navigate } = this.props.navigation;
     console.log(this.props, "props ahiyan che");
     return (
-    <View>
-    <Text style = {styles.welcome}>Welcome to the Virtual Time Capsule App </Text>
+    <View style = {styles.container}>
+    <Image
+        style={{width:220, height:150}}
+        source={require('../images/logo.png')}/>
     <View>
        <TouchableHighlight
           onPress={() => navigate("login", {screen: "Login"})}
@@ -29,7 +29,7 @@ export default class FirstPage extends Component {
        </TouchableHighlight>
        <TouchableHighlight
            onPress={() => navigate("createaccount", {screen: "Create Account"})}
-           style={styles.button1}>
+           style={styles.button}>
            <Text
              style={styles.buttonText}>Sign Up </Text>
        </TouchableHighlight>
@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     welcome: {
-        fontFamily: "Times New Roman",
         fontSize: 45,
         fontWeight: 'bold',
         fontStyle: 'italic',
@@ -58,29 +57,21 @@ const styles = StyleSheet.create({
         marginLeft: 50,
         marginBottom: 40
     },
-    button: {
-        alignSelf: 'stretch',
-        marginLeft: 10,
-        marginRight: 10,
-        borderRadius: 5,
-        height: 40,
-        backgroundColor: '#ADD8E6',
-        justifyContent: 'center'
-    },
-    button1: {
-        alignSelf: 'stretch',
-        marginLeft: 10,
-        marginRight: 10,
-        borderRadius: 5,
-        height: 40,
-        backgroundColor: '#32CD32',
-        justifyContent: 'center'
-    },
-    buttonText: {
-        color: 'blue',
-        fontSize: 22,
-        alignSelf: 'center'
-    },
+    button:{
+        backgroundColor: '#1c313a',
+        width:280,
+        borderRadius: 50,
+        marginVertical: 10,
+        paddingVertical:10
+      },
+
+      buttonText:{
+        fontSize:16,
+        fontWeight:'500',
+        color: '#ffffff',
+        textAlign:'center'
+
+      },
 });
 
 AppRegistry.registerComponent('FirstPage', () => FirstPage);

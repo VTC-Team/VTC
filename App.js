@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, Button,StyleSheet,TouchableOpacity, StatusBar } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import FirstPage from './src/FirstPage/FirstPage';
 import Login from './src/pages/Login';
 import Signup from './src/pages/Signup';
+import ProfilePage from './src/ProfilePage/ProfilePage';
 
 /*const HomeScreen = ({ navigation }) => (
   <View>
@@ -31,25 +32,45 @@ const CreateAccountScreen = ({ navigation }) => (
   //<AddFriends />
 );*/
 
+const InnerNavigator = DrawerNavigator (
+{
+  menubar: {
+     screen: ProfilePage,
+  },
+},
+    {
+       initialRouteName: 'menubar',
+       drawerPosition:'left',
+          drawerWidth: 250,
+          contentOptions:{
+          activeTintColor:'red',
+       }
+    }
+);
+
 const RootNavigator = StackNavigator({
   Home: {
     screen: FirstPage,//HomeScreen,
     navigationOptions: {
-      headerTitle: 'Welcome',
+      header:null
     },
   },
   login: {
     screen: Login,//LoginScreen,
     navigationOptions: {
-      headerTitle: 'Log in',
+      header:null,
     },
   },
   createaccount: {
     screen: Signup,//CreateAccountScreen,
     navigationOptions: {
-      headerTitle: 'Create Account',
+      header:null,
     },
   },
+  menu: {
+    screen: ProfilePage,
+  },
+
 });
 
 export default RootNavigator;

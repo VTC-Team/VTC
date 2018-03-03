@@ -13,15 +13,40 @@ import Logo from '../components/Logo';
 import Form from '../components/Form';
 import FormSignup from '../components/FormSignup';
 import FirstPage from '../FirstPage/FirstPage';
+import ProfilePage from '../ProfilePage/ProfilePage';
 import { StackNavigator } from 'react-navigation';
-
+import Firebase from "../../includes/firebase/firebase.js";
+import * as firebase from "firebase";
 
 export default class Login extends Component<{}>{
 
+    constructor(props) {
+        super(props);
+        try {
+            Firebase.initialise();
+        } catch(err) {
+            if (!/already exists/.test(err.message)) {
+                console.error('Firebase initialization error', err.stack)
+            }
+        }
+        this.state = {
+            email: "",
+            password:""
+        }
+    }
 blah = () => {
     console.log("props is here");
 }
-
+async login() {
+    try {
+        await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+        this.props.navigation.navigate("createaccount", {screen: "Signup"})
+        // Navigate to home screen
+    } catch (error) {
+        alert(error.toString())
+        // Navigate to login screen
+    }
+}
 	render(){
 	const { navigate } = this.props.navigation;
 		return(
@@ -32,7 +57,7 @@ blah = () => {
                 placeholderTextColor='#ffffff'
                 selectionColor='#fff'
                 keyboardType="email-address"
-                onSubmitEditing={()=> this.password.focus()}
+                onChangeText={(text) => this.setState({email:text})}
             />
 
             <TextInput style={styles.inputBox1}
@@ -40,12 +65,12 @@ blah = () => {
                 placeholder='Password'
                 secureTextEntry={true}
                 placeholderTextColor='#ffffff'
-                ref={(input)=> this.password=input}
+                onChangeText={(text) => this.setState({password:text})}
             />
                 <View style={styles.signupTextCont}>
          	    <TouchableOpacity
          	            style={styles.button}
-         	            onPress={() => navigate("Home", {screen: "FirstPage"})}
+         	            onPress={() => {this.login()}}
          	            >
                        <Text style= {styles.buttonText}>Log in</Text>
                 </TouchableOpacity>

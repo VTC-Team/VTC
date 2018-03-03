@@ -6,7 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
-  ScrollView,
+  //ScrollView,
 } from 'react-native';
 import CheckBox from 'react-native-checkbox';
 import AddFriends from '../AddFriends/AddFriends';
