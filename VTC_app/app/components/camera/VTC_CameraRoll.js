@@ -79,7 +79,7 @@ export default class VTC_CameraRoll extends Component {
     
 
     getPhotosFromGallery() {
-        CameraRoll.getPhotos({ first: 20})
+        CameraRoll.getPhotos({ first: 20, assetType: 'Videos'})
             .then(res => {
                 let photoArray = res.edges;
                 this.setState({ photoArray: photoArray })

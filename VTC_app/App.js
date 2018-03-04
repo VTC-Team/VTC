@@ -1,9 +1,12 @@
+console.disableYellowBox = true;
+
 import React, {Component} from 'react';
 import {AppRegistry, Text, View, StyleSheet} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import VTC_Camera from './app/components/camera/VTC_Camera'
 import VTC_CameraRoll from './app/components/camera/VTC_CameraRoll'
+import Camera_record from './app/components/camera/Camera_record'
 
 
 const PhotoScreen = ({ navigation }) => (
@@ -22,6 +25,13 @@ const PhotoScreen = ({ navigation }) => (
           >
           Camera Roll
       </Text>
+
+       <Text
+          style = {styles.button}
+          onPress={() => navigation.navigate('camerarecord')}
+          >
+          Record Video
+      </Text>
     </View>
 
 );
@@ -33,6 +43,10 @@ const CameraScreen = () => (
 const CameraRollScreen = () => (
   <VTC_CameraRoll />
 );
+
+const CameraRecord = () => (
+  <Camera_record />
+)
 
 const photoscreens = StackNavigator({
   Home: {
@@ -51,6 +65,12 @@ const photoscreens = StackNavigator({
     screen: CameraRollScreen,
       navigationOptions: {
         headerTitle: 'Choose photos',
+      },
+  },
+  camerarecord: {
+    screen: CameraRecord,
+      navigationOptions: {
+        headerTitle: 'Record a video',
       },
   },
 });
