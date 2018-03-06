@@ -1,2 +1,0 @@
-# VTC
-Virtual Time Capsule
