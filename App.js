@@ -4,38 +4,44 @@ import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import FirstPage from './src/FirstPage/FirstPage';
 import Login from './src/pages/Login';
 import Signup from './src/pages/Signup';
-import ProfilePage from './src/ProfilePage/ProfilePage';
 
-/*const HomeScreen = ({ navigation }) => (
-  <View>
-    <FirstPage />
-    <TouchableOpacity>
-    <Button
-      onPress={() => navigation.navigate('login')}
-      title="Go to Log in"
-      color = "green"
-    />
-    <Button
-      onPress={() => navigation.navigate('createaccount')}
-      title="Create Account"
-    />
-    </TouchableOpacity>
-  </View>
-);
-
-const LoginScreen = ({ navigation }) => (
-  <Login />
-);
-
-const CreateAccountScreen = ({ navigation }) => (
-  <Signup />
-  //<AddFriends />
-);*/
+import FirstScreen from './src/screens/FirstScreen';
+import SecondScreen from './src/screens/SecondScreen';
+import ThirdScreen from './src/screens/ThirdScreen';
+import FourthScreen from './src/screens/FourthScreen';
+import FifthScreen from './src/screens/FifthScreen';
+import SixthScreen from './src/screens/SixthScreen';
+import SeventhScreen from './src/screens/SeventhScreen';
+import SearchBar from './src/components/SearchBar';
 
 const InnerNavigator = DrawerNavigator (
 {
   menubar: {
-     screen: ProfilePage,
+     screen: FirstScreen,
+  },
+  MyFriends:{
+     path:'/',
+     screen:SecondScreen,
+  },
+  AddFriends:{
+     path:'/',
+     screen:ThirdScreen,
+  },
+  MemoriesReceived:{
+     path:'/',
+     screen:FourthScreen,
+  },
+  UploadMemory:{
+     path:'/',
+     screen:FifthScreen,
+  },
+  Camera:{
+     path:'/',
+     screen:SixthScreen,
+  },
+  SignOut:{
+     path:'/',
+     screen:SeventhScreen
   },
 },
     {
@@ -68,7 +74,10 @@ const RootNavigator = StackNavigator({
     },
   },
   menu: {
-    screen: ProfilePage,
+    screen: InnerNavigator,
+    navigationOptions: {
+          header:null,
+    },
   },
 
 });

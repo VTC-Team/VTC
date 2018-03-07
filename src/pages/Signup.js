@@ -18,6 +18,7 @@ import * as firebase from "firebase";
 import Firebase from "../../includes/firebase/firebase.js";
 import { StackNavigator } from 'react-navigation';
 
+import FirstScreen from '../screens/FirstScreen';
 export default class Signup extends Component<{}>{
 
     constructor(props) {
@@ -38,7 +39,7 @@ export default class Signup extends Component<{}>{
     async signup() {
         try {
             await firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password);
-            this.props.navigation.navigate("Home", {screen: "FirstPage"});
+            this.props.navigation.navigate("menu", {screen: "FirstScreen"});
         }
         catch (error) {
             alert(error.toString())

@@ -13,11 +13,11 @@ import Logo from '../components/Logo';
 import Form from '../components/Form';
 import FormSignup from '../components/FormSignup';
 import FirstPage from '../FirstPage/FirstPage';
-import ProfilePage from '../ProfilePage/ProfilePage';
 import { StackNavigator } from 'react-navigation';
 import Firebase from "../../includes/firebase/firebase.js";
 import * as firebase from "firebase";
 
+import FirstScreen from '../screens/FirstScreen';
 export default class Login extends Component<{}>{
 
     constructor(props) {
@@ -40,7 +40,7 @@ blah = () => {
 async login() {
     try {
         await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
-        this.props.navigation.navigate("createaccount", {screen: "Signup"})
+        this.props.navigation.navigate("menu", {screen: "FirstScreen"})
         // Navigate to home screen
     } catch (error) {
         alert(error.toString())

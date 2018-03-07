@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import { StackNavigator } from 'react-navigation'; // 1.0.0-beta.14
 import { AppRegistry, Text, View, StyleSheet,TouchableHighlight,StatusBar,Image} from 'react-native';
 import { Button } from 'react-native';
-//import Login from '../pages/Login';
-
-//import logo from '../images/logo.png';
 
 export default class FirstPage extends Component {
   blah = () => {
@@ -18,8 +15,10 @@ export default class FirstPage extends Component {
     return (
     <View style = {styles.container}>
     <Image
-        style={{width:220, height:150}}
+        style={{width:220, height:250}}
         source={require('../images/logo.png')}/>
+    <Text
+        style={styles.welcome}>The Virtual Time Capsule App</Text>
     <View>
        <TouchableHighlight
           onPress={() => navigate("login", {screen: "Login"})}
@@ -47,15 +46,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     welcome: {
-        fontSize: 45,
+        fontSize: 20,
         fontWeight: 'bold',
         fontStyle: 'italic',
         textAlign: "center",
-        color: "#B1B1B1",
-        marginTop: 120,
-        marginRight: 50,
-        marginLeft: 50,
-        marginBottom: 40
+        color: "#ffffff",
+        marginTop: 0,
+        marginRight: 0,
+        marginLeft: 0,
+        marginBottom: 0,
     },
     button:{
         backgroundColor: '#1c313a',
