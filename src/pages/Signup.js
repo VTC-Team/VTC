@@ -6,7 +6,7 @@ import {
   StatusBar,
   TouchableOpacity,
   TextInput,
-  //ScrollView,
+  ScrollView,
   Button,
 } from 'react-native';
 
@@ -32,13 +32,22 @@ export default class Signup extends Component<{}>{
         }
         this.state = {
             email: "",
-            password:""
+            password:"",
+            username:"",
+            name:""
         }
     }
 
     async signup() {
         try {
             await firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password);
+            var database = firebase.database();
+            var uid =firebase.auth().currentUser.uid;
+            database.ref('users/' + uid).set({
+                username: this.state.username,
+                name: this.state.name
+            });
+
             this.props.navigation.navigate("menu", {screen: "FirstScreen"});
         }
         catch (error) {
@@ -51,12 +60,14 @@ export default class Signup extends Component<{}>{
 	const { navigate } = this.props.navigation;
 		return(
 			<View style={styles.container}>
+			<ScrollView>
           <TextInput style={styles.inputBox}
           underlineColorAndroid='rgba(0,0,0,0)'
           placeholder='Name'
           placeholderTextColor='#ffffff'
           selectionColor='#fff'
           keyboardType="email-address"
+          onChangeText={(text) => this.setState({name:text})}
           />
 
           <TextInput style={styles.inputBox}
@@ -65,7 +76,7 @@ export default class Signup extends Component<{}>{
           placeholderTextColor='#ffffff'
           selectionColor='#fff'
           keyboardType="email-address"
-          onSubmitEditing={()=> this.password.focus()}
+          onChangeText={(text) => this.setState({username:text})}
           />
 
 	      <TextInput style={styles.inputBox}
@@ -113,6 +124,7 @@ export default class Signup extends Component<{}>{
                 <Text style= {styles.buttonText}>Sign up</Text>
 			</TouchableOpacity>
 			</View>
+			</ScrollView>
 			</View>
 		)
 	}
