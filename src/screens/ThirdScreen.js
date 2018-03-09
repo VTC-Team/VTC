@@ -18,24 +18,33 @@ export default class ThirdScreen extends React.Component{
             }
     }
 
-	onPressSearch = (term) => {
-           var database = firebase.database();
-           database.ref('users/').limitToFirst(10).on('value', (snap) =>  {
-                        var data = snap.val();
-                        var keys = Object.keys(data);
-                        for(key in data) {
-                            if (data.hasOwnProperty(key)) {
-                                if(data[key].username == term){
-                                    this.setState({friend:term, frienduid:key});
-                                }
-                            }
-                        }
-                        var updates = {};
-                        var uid =firebase.auth().currentUser.uid;
-                        updates['users/' + uid + '/friends/' + this.state.frienduid] = this.state.friend;
-                        return firebase.database().ref().update(updates);
-           });
-    }
+	 onPressSearch = (term) => {
+                var database = firebase.database();
+                database.ref('users/').limitToFirst(10).on('value', (snap) =>  {
+                             var data = snap.val();
+                             var keys = Object.keys(data);
+                             for(key in data) {
+                                 if (data.hasOwnProperty(key)) {
+                                     if(data[key].username == term){
+                                         this.setState({friend:term, frienduid:key});
+                                     }
+                                 }
+                             }
+                             if(this.state.friend != ''){
+
+                                 var updates = {};
+                                 var uid =firebase.auth().currentUser.uid;
+                                 updates['users/' + uid + '/friends/' + this.state.frienduid] = this.state.friend;
+                                 for(key in data) {
+                                    if(key == uid){
+                                        updates['users/' + this.state.frienduid + '/friends/' + uid] = data[key].username;
+                                    }
+                                 }
+                                 firebase.database().ref().update(updates);
+                             }
+                });
+         }
+
 		/*static navigationOptions={
 			drawerLabel:'Add Friends',
 			drawerIcon:({tintColor})=>{

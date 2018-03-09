@@ -15,18 +15,23 @@ export default class SecondScreen extends React.Component{
            this.state = {
                 friends:""
            }
-           var database = firebase.database();
-           var uid =firebase.auth().currentUser.uid;
-           database.ref('users/' + uid + '/friends/').limitToFirst(10).on('value', (snap) =>  {
-                        var data = snap.val();
-                        var keys = Object.keys(data);
-                        for(key in data) {
-                            if (data.hasOwnProperty(key)) {
-                                var append = this.state.friends + '<Text>' + data[key] + '</Text>';
-                                this.setState({friends:append});
-                            }
-                        }
-           });
+           this.onload;
+        }
+
+        async onload () {
+                   const database = await firebase.database();
+                   const uid = await firebase.auth().currentUser.uid;
+                   database.ref('users/' + uid + '/friends/').limitToFirst(10).on('value', (snap) =>  {
+                                var data = snap.val();
+                                var keys = Object.keys(data);
+                                for(key in data) {
+                                    if (data.hasOwnProperty(key)) {
+                                        var append = this.state.friends + data[key] + '\n';
+                                        this.setState({friends:append});
+                                    }
+                                }
+                   });
+
         }
 
 
@@ -52,25 +57,18 @@ export default class SecondScreen extends React.Component{
 	        leftComponent={{ icon: 'home', onPress: () => this.props.navigation.navigate("menu", {screen: "FirstScreen"}), color: '#fff' }}
 	        outerContainerStyles={{backgroundColor:'#455a64'}}
     		/>
-    		<SearchBar onPressSearch={this.onPressSearch}/>
-    		<View style={styles.welcome}>
-    		    this.state.friends
-    		</View>
+
+    		<Text style={{color: "#ffffff"}}>{this.state.friends}</Text>
+
+
 			</View>
 
-	}
+	    }
 }
+
 const styles = StyleSheet.create({
-welcome: {
-        fontFamily: "Times New Roman",
-        fontSize: 15,
-        fontWeight: 'bold',
-        fontStyle: 'italic',
-        textAlign: "center",
-        color: "#B1B1B1",
-        marginTop:0,
-        marginRight:0,
-        marginLeft: 0,
-        marginBottom:0
-},
+    welcome: {
+            textAlign: "center",
+            color: "#ffffff",
+    }
 });

@@ -20,7 +20,7 @@ class SearchBar extends Component{
     />
     <Button 
         buttonStyle={styles.buttonStyle}
-        title="Search"
+        title="Add Friend"
         onPress={() => this.props.onPressSearch(this.state.term)}
     />
     </View>
