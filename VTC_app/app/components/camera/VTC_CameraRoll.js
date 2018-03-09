@@ -146,11 +146,11 @@ export default class VTC_CameraRoll extends Component {
                         
                     }
                 </ScrollView>
-                <Text
-                    style = {styles.upload}
+                <TouchableHighlight
+                    underlayColor='transparent'
                     onPress={() => this.uploadPhotos()}>
-                    Upload
-                </Text>
+                    <Text style = {styles.upload}>Upload</Text>
+                </TouchableHighlight>
             </View>
         );
     }
