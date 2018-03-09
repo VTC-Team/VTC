@@ -10,6 +10,7 @@ import * as firebase from "firebase";
 import Firebase from "../../../includes/firebase/firebase";
 
 import RNFetchBlob from 'react-native-fetch-blob';
+import {Header} from 'react-native-elements';
 const { width } = Dimensions.get('window');
 
 // Prepare Blob support
@@ -43,12 +44,6 @@ export default class VTC_CameraRoll extends Component {
         selectArray: [],
         uriIndex: []
     }
-    //constructor(props) {
-        //Firebase.initialise();
-    //}
-
-    //IMAGES
-    //Firebase
 
     uploadImage = (uri, mime = 'application/octet-stream') => {
         return new Promise((resolve, reject) => {
@@ -118,10 +113,14 @@ export default class VTC_CameraRoll extends Component {
         this.getPhotosFromGallery();
         return(
             <View style={styles.container}>
+                <Header 
+                    rightComponent={{ icon: 'menu', onPress: () => this.props.navigation.navigate('DrawerOpen'), color: '#fff' }}
+                    centerComponent={{ text: 'Upload', style:{fontSize: 18, color:'white'} }}			  
+                    outerContainerStyles={{backgroundColor:'#455a64'}}
+                />
                 <ScrollView
                     contentContainerStyle={styles.scrollView}>
                     {
-                        
                         this.state.photoArray.map((p, i) => {
                             return(
                                 <TouchableHighlight
@@ -133,7 +132,9 @@ export default class VTC_CameraRoll extends Component {
                                     <Image
                                         style={{
                                             width: width/3,
-                                            height: width/3
+                                            height: width/3,
+                                            borderRadius: 2,
+                                            borderColor: 'black'
                                         }}
                                         source={{uri:p.node.image.uri}}
                                     />
@@ -148,44 +149,32 @@ export default class VTC_CameraRoll extends Component {
                 <Text
                     style = {styles.upload}
                     onPress={() => this.uploadPhotos()}>
-            
                     Upload
                 </Text>
             </View>
         );
-
-
     }
-
-    
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    add: {
-        width: 100,
-        height: 100
+        
+        backgroundColor: '#000a12'
     },
     scrollView: {
         flexWrap: 'wrap',
         flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginBottom: 40
-    },
-    button: {
-        marginBottom: 20,
-        paddingHorizontal: 10
     },
     upload: {
         flex: 0,
-        backgroundColor: 'steelblue',
-        borderRadius: 10,
-        color: 'red',
-        padding: 15,
-        margin: 20
+        textAlign: 'center',
+        alignItems: 'center',
+        color: 'white',
+        margin: 15,
     }
 });
 

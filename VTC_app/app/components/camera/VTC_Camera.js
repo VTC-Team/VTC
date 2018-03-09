@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import {AppRegistry, Text, View, StyleSheet, BackHandler} from 'react-native';
 import Camera from 'react-native-camera';
+import {Header} from 'react-native-elements';
 
 export default class VTC_Camera extends Component{
 
@@ -12,6 +13,11 @@ export default class VTC_Camera extends Component{
     render(){
         return(
             <View style={styles.container}>
+                <Header 
+                    rightComponent={{ icon: 'menu', onPress: () => this.props.navigation.navigate('DrawerOpen'), color: '#fff' }}
+                    centerComponent={{ text: 'Take a Picture', style:{fontSize: 18, color:'white'} }}			  
+                    outerContainerStyles={{backgroundColor:'#455a64'}}
+                />
                 <Camera
                 ref={(cam) =>{
                     this.camera = cam
@@ -51,9 +57,9 @@ const styles = StyleSheet.create({
     },
     capture: {
       flex: 0,
-      backgroundColor: 'steelblue',
+      backgroundColor: '#455a64',
       borderRadius: 10,
-      color: 'red',
+      color: 'white',
       padding: 15,
       margin: 45
     }

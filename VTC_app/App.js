@@ -1,70 +1,91 @@
-import React, {Component} from 'react';
-import {AppRegistry, Text, View, StyleSheet} from 'react-native';
-import { StackNavigator } from 'react-navigation';
+console.disableYellowBox = true;
+import React from 'react';
+import { View, Text, Button,StyleSheet,TouchableOpacity, StatusBar } from 'react-native';
+import { StackNavigator, DrawerNavigator } from 'react-navigation';
+import FirstPage from './src/FirstPage/FirstPage';
+import Login from './src/pages/Login';
+import Signup from './src/pages/Signup';
+
+import FirstScreen from './src/screens/FirstScreen';
+import SecondScreen from './src/screens/SecondScreen';
+import ThirdScreen from './src/screens/ThirdScreen';
+import FourthScreen from './src/screens/FourthScreen';
+import FifthScreen from './src/screens/FifthScreen';
+import SixthScreen from './src/screens/SixthScreen';
+import SeventhScreen from './src/screens/SeventhScreen';
+import SearchBar from './src/components/SearchBar';
 
 import VTC_Camera from './app/components/camera/VTC_Camera'
 import VTC_CameraRoll from './app/components/camera/VTC_CameraRoll'
 
+const InnerNavigator = DrawerNavigator (
+{
+  menubar: {
+     screen: FirstScreen,
+  },
+  MyFriends:{
+     path:'/',
+     screen:SecondScreen,
+  },
+  AddFriends:{
+     path:'/',
+     screen:ThirdScreen,
+  },
+  MemoriesReceived:{
+     path:'/',
+     screen:FourthScreen,
+  },
 
-const PhotoScreen = ({ navigation }) => (
-    <View style={styles.container}>
-            
-      <Text
-          style = {styles.button}
-          onPress={() => navigation.navigate('camera')}
-          >
-          Camera
-      </Text>
-      
-      <Text
-          style = {styles.button}
-          onPress={() => navigation.navigate('cameraroll')}
-          >
-          Camera Roll
-      </Text>
-    </View>
+  Camera: {
+    path:'/',
+    screen: VTC_Camera,
+  },
+  UploadMemory: {
+    path:'/',
+    screen: VTC_CameraRoll,
+  },
 
+  SignOut:{
+     path:'/',
+     screen:SeventhScreen
+  },
+},
+    {
+       initialRouteName: 'menubar',
+       drawerPosition:'left',
+          drawerWidth: 250,
+          contentOptions:{
+          activeTintColor:'red',
+       }
+    }
 );
 
-const CameraScreen = () => (
-  <VTC_Camera />
-);
-
-const CameraRollScreen = () => (
-  <VTC_CameraRoll />
-);
-
-const photoscreens = StackNavigator({
+const RootNavigator = StackNavigator({
   Home: {
-    screen: PhotoScreen,
-      navigationOptions: {
-        headerTitle: 'Photos',
-      },
+    screen: FirstPage,//HomeScreen,
+    navigationOptions: {
+      header:null
+    },
   },
-  camera: {
-    screen: CameraScreen,
-      navigationOptions: {
-        headerTitle: '',
-      },
+  login: {
+    screen: Login,//LoginScreen,
+    navigationOptions: {
+      header:null,
+    },
   },
-  cameraroll: {
-    screen: CameraRollScreen,
-      navigationOptions: {
-        headerTitle: 'Choose photos',
-      },
+  createaccount: {
+    screen: Signup,//CreateAccountScreen,
+    navigationOptions: {
+      header:null,
+    },
   },
+  menu: {
+    screen: InnerNavigator,
+    navigationOptions: {
+          header:null,
+    },
+  },
+
 });
 
-const styles = StyleSheet.create({
-  container:{
-      padding: 20
-  },
-  button: {
-      height: 40,
-      marginBottom: 20,
-      paddingHorizontal: 10
-  }
-});
-
-
-export default photoscreens;
+export default RootNavigator;
