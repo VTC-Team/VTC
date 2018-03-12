@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View, Image } from 'react-native';
+import { Button, Text, View, Image, StyleSheet, DatePickerAndroid, TimePickerAndroid } from 'react-native';
 //import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Header} from 'react-native-elements';
 
@@ -31,4 +31,3 @@ export default class FifthScreen extends React.Component{
 
 	}
 }
-

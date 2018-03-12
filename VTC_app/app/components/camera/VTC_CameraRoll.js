@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import {
-    Text, CameraRoll, Image, StyleSheet, TouchableHighlight, View, AppRegistry, Modal,  Button, ScrollView, Dimensions
+    Text, CameraRoll, Image, StyleSheet, TouchableHighlight, View, AppRegistry, Modal,  Button, ScrollView, Dimensions, DatePickerAndroid, TimePickerAndroid
 } from 'react-native';
 
 import * as firebase from "firebase";
@@ -109,6 +109,36 @@ export default class VTC_CameraRoll extends Component {
         alert("uploaded!")
     }
 
+    openDatePicker = async (term) => {
+        try {
+            const {action, year, month, day} = await DatePickerAndroid.open({
+              date: new Date()
+            });
+            if (action !== DatePickerAndroid.dismissedAction) {
+              //This is where you get the date from.
+              var date = new Date(year, month, day);
+            }
+          } catch ({code, message}) {
+            console.warn('Cannot open date picker', message);
+          }
+    }
+
+    openTimePicker = async (term) => {
+        try {
+            const {action, hour, minute} = await TimePickerAndroid.open({
+              hour: 8,
+              minute: 0,
+              is24Hour: false,
+            });
+            if (action !== TimePickerAndroid.dismissedAction) {
+              // This is where you get the time from.
+              var time = new Date(hour, minute);
+            }
+          } catch ({code, message}) {
+            console.warn('Cannot open time picker', message);
+          }
+    }
+
     render() {
         this.getPhotosFromGallery();
         return(
@@ -146,6 +176,14 @@ export default class VTC_CameraRoll extends Component {
                         
                     }
                 </ScrollView>
+                <Button
+				    style={styles.button}
+				    onPress={() => {this.openDatePicker()}}
+  				    title="Choose Date"/>
+			    <Button
+				    style={styles.button}
+				    onPress={() => {this.openTimePicker()}}
+  				    title="Choose Time"/>
                 <TouchableHighlight
                     underlayColor='transparent'
                     onPress={() => this.uploadPhotos()}>
@@ -169,6 +207,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 40
     },
+    button:{
+        backgroundColor: '#1c313a',
+        width:280,
+        borderRadius: 50,
+        marginVertical: 10,
+        paddingVertical:10
+	},
     upload: {
         flex: 0,
         textAlign: 'center',
