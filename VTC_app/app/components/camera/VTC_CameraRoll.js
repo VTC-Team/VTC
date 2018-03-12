@@ -47,10 +47,20 @@ export default class VTC_CameraRoll extends Component {
 
     uploadImage = (uri, mime = 'application/octet-stream') => {
         return new Promise((resolve, reject) => {
-          const sessionId = new Date().getTime()
+            const sessionId = new Date().getTime()
+            const database = firebase.database();
+            const uid = firebase.auth().currentUser.uid;
             let uploadBlob = null
-            const imageRef = storageRef.child('Images').child(`${sessionId}` + '.jpg')
+            const imageRef = storageRef.child(uid).child(`${sessionId}` + '.jpg')
         
+            
+            database.ref('users/' + uid + '/photos/').on('value', (snap) =>  {
+            
+            var updates = {};
+            updates['users/' + uid + '/photos/' + `/${sessionId}/` + 'datetime'] = new Date(this.state.year, this.state.month, this.state.day, this.state.hour, this.state.minute);
+            firebase.database().ref().update(updates);
+        });
+            
             fs.readFile(uri, 'base64')
             .then((data) => {
                 return Blob.build(data, { type: `${mime};BASE64` })
@@ -70,6 +80,9 @@ export default class VTC_CameraRoll extends Component {
                 reject(error)
             })
         })
+
+        
+
     }
     
 
@@ -116,7 +129,9 @@ export default class VTC_CameraRoll extends Component {
             });
             if (action !== DatePickerAndroid.dismissedAction) {
               //This is where you get the date from.
-              var date = new Date(year, month, day);
+              this.state.year = year;
+              this.state.month = month;
+              this.state.day = day;
             }
           } catch ({code, message}) {
             console.warn('Cannot open date picker', message);
@@ -132,7 +147,8 @@ export default class VTC_CameraRoll extends Component {
             });
             if (action !== TimePickerAndroid.dismissedAction) {
               // This is where you get the time from.
-              var time = new Date(hour, minute);
+              this.state.hour = hour;
+              this.state.minute = minute;
             }
           } catch ({code, message}) {
             console.warn('Cannot open time picker', message);
