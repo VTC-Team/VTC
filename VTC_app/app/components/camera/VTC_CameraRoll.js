@@ -56,8 +56,9 @@ export default class VTC_CameraRoll extends Component {
             
             database.ref('users/' + uid + '/photos/').on('value', (snap) =>  {
             
+            new_date = new Date(this.state.year, this.state.month, this.state.day, this.state.hour, this.state.minute, 0, 0);
             var updates = {};
-            updates['users/' + uid + '/photos/' + `/${sessionId}/` + 'datetime'] = new Date(this.state.year, this.state.month, this.state.day, this.state.hour, this.state.minute);
+            updates['users/' + uid + '/photos/' + `/${sessionId}/` + 'datetime'] = new_date;
             firebase.database().ref().update(updates);
         });
             
@@ -129,9 +130,12 @@ export default class VTC_CameraRoll extends Component {
             });
             if (action !== DatePickerAndroid.dismissedAction) {
               //This is where you get the date from.
+              //console logs report that this is picking correctly, as well as time
+              //It is being assigned to this.state accordingly
               this.state.year = year;
               this.state.month = month;
               this.state.day = day;
+              console.log(this.state.year + ' ' + this.state.month + ' ' + this.state.day);
             }
           } catch ({code, message}) {
             console.warn('Cannot open date picker', message);
@@ -149,6 +153,8 @@ export default class VTC_CameraRoll extends Component {
               // This is where you get the time from.
               this.state.hour = hour;
               this.state.minute = minute;
+              console.log('Hour: ' + this.state.hour);
+              console.log('Minute: ' + this.state.minute);
             }
           } catch ({code, message}) {
             console.warn('Cannot open time picker', message);

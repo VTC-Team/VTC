@@ -43,7 +43,7 @@ export default class FourthScreen extends React.Component{
 			uriIndex: []
 		}
 		
-		async onLoad() {
+		async deliverData() {
 		
 			const database = await firebase.database();
 			const uid = await firebase.auth().currentUser.uid;
@@ -53,7 +53,8 @@ export default class FourthScreen extends React.Component{
 			
 				database.ref('users/' + uid + '/photos/').limitToFirst(10).on('value', (snap) =>  {
 				
-				var current_date = new Date(); 
+				var current_date = new Date();
+				//snap.val() appears to be undefined 
 				var data = snap.val().datetime;
 		
 				var index = 0;
@@ -77,7 +78,7 @@ export default class FourthScreen extends React.Component{
 		}	
 
 		render(){
-			this.onLoad();
+			this.deliverData();
 			return <View style={{flex:1,backgroundColor: '#000a12'}}>
 			<Header 
 			rightComponent={{ icon: 'menu', onPress: () => this.props.navigation.navigate('DrawerOpen'), color: '#fff' }}
