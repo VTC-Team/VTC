@@ -50,33 +50,26 @@ export default class FourthScreen extends React.Component{
 		
 			const database = await firebase.database();
 			const uid = await firebase.auth().currentUser.uid;
-			const imageRef = storageRef.child(uid);
-			
-			this.setState((photoArray) => {
-				return { photoArray:  }
-			});
+			//const imageRef = storageRef.child(uid);
 	
 			try {
 			
 				database.ref('users/' + uid + '/photos/').limitToFirst(10).on('value', (snap) =>  {
 				
 				var current_date = new Date();
-				
 				var index = 0;
 				snap.forEach(function(childSnapshot) {
-					stored_date = childSnapshot.child("datetime").val();
+					stored_json_date = childSnapshot.child("datetime").val();
+					stored_date = new Date(stored_json_date);
 					if (current_date > stored_date) {
 						storageRef.child(uid + '/' + childSnapshot.key + '.jpg').getDownloadURL().then(function(url) {
-							photoArray[index] = url;
+							//photoArray[index] = url;
+							console.log(index);
+							console.log(url);
 							index++;
 						})
 					}
 				});
-		
-				/*var updates = {};
-				updates['users/' + uid + '/photos/' + `/${sessionId}/` + date] = this.state.date;
-				updates['users/' + uid + '/photos/' + `/${sessionId}/` + time] = this.state.time;
-				firebase.database().ref().update(updates);*/
 			 
 		
 			});
