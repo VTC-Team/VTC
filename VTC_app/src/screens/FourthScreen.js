@@ -1,3 +1,6 @@
+//Retrieves photos from the database upon loading the page, but only if the associated datetime
+//has already passed
+
 import React from 'react';
 import { Button, Text, View, Image, ScrollView, StyleSheet } from 'react-native';
 //import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -48,22 +51,27 @@ export default class FourthScreen extends React.Component{
 			const database = await firebase.database();
 			const uid = await firebase.auth().currentUser.uid;
 			const imageRef = storageRef.child(uid);
+			
+			this.setState((photoArray) => {
+				return { photoArray:  }
+			});
 	
 			try {
 			
 				database.ref('users/' + uid + '/photos/').limitToFirst(10).on('value', (snap) =>  {
 				
 				var current_date = new Date();
-				//snap.val() appears to be undefined 
-				var data = snap.val().datetime;
-		
+				
 				var index = 0;
-				if (current_date > data) {
-					storageRef.child(uid + '/' + snap.key + '.jpg').getDownloadURL().then(function(url) {
-						photoArray[index] = url;
-						index++;
-					})
-				}
+				snap.forEach(function(childSnapshot) {
+					stored_date = childSnapshot.child("datetime").val();
+					if (current_date > stored_date) {
+						storageRef.child(uid + '/' + childSnapshot.key + '.jpg').getDownloadURL().then(function(url) {
+							photoArray[index] = url;
+							index++;
+						})
+					}
+				});
 		
 				/*var updates = {};
 				updates['users/' + uid + '/photos/' + `/${sessionId}/` + date] = this.state.date;
