@@ -1,4 +1,5 @@
 {
-  "name": "VTC_app",
-  "displayName": "VTC_app"
+  "expo": {
+    "sdkVersion": "25.0.0"
+  }
 }

@@ -12,13 +12,13 @@ class SearchBar extends Component{
 
     return(
     <View style={styles.containerStyle}>
-    <TextInput 
+    <TextInput
     	style={styles.searchTextStyle}
     	underlineColorAndroid='rgba(0,0,0,0)'
       onChangeText={term=>this.setState({term})} //this sets state to term
       value={this.state.term}
     />
-    <Button 
+    <Button
         buttonStyle={styles.buttonStyle}
         title="Add Friend"
         onPress={() => this.props.onPressSearch(this.state.term)}
@@ -52,7 +52,7 @@ const styles = {
     height:30,
     marginBottom:3,
     marginTop:3,
-    width:75,
+    width:120,
     borderRadius: 20,
     marginVertical: 10,
     paddingVertical:2
