@@ -112,11 +112,6 @@ export default class Signup extends Component<{}>{
           ref={(input)=> this.password=input}
           />
 
-          <CheckBox
-          label='Agree to user conditions'
-          checked={false}
-          onChange={(checked) => console.log('I am checked', checked)}
-          />
 			<View style={styles.signupTextCont}>
 			<TouchableOpacity
 			    style={styles.button}
