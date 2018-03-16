@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StackNavigator } from 'react-navigation'; // 1.0.0-beta.14
-import { AppRegistry, Text, View, StyleSheet,TouchableHighlight,StatusBar,Image,Button} from 'react-native';
+import { AppRegistry, Text, View, StyleSheet,TouchableHighlight,StatusBar,Image} from 'react-native';
+import { Button } from 'react-native';
 
 export default class FirstPage extends Component {
   blah = () => {

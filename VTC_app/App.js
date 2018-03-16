@@ -6,42 +6,56 @@ import FirstPage from './src/FirstPage/FirstPage';
 import Login from './src/pages/Login';
 import Signup from './src/pages/Signup';
 
-import ProfilePage from './src/screens/ProfilePage';
-import MyFriends from './src/screens/MyFriends';
-import AddFriends from './src/screens/AddFriends';
-import MemoriesReceived from './src/screens/MemoriesReceived';
-import UploadMemory from './src/screens/UploadMemory';
-import Camera from './src/screens/Camera';
+import FirstScreen from './src/screens/FirstScreen';
+import SecondScreen from './src/screens/SecondScreen';
+import ThirdScreen from './src/screens/ThirdScreen';
+import FourthScreen from './src/screens/FourthScreen';
+import FifthScreen from './src/screens/FifthScreen';
+import SixthScreen from './src/screens/SixthScreen';
 import SeventhScreen from './src/screens/SeventhScreen';
 import SearchBar from './src/components/SearchBar';
 
+import VTC_Camera from './app/components/camera/VTC_Camera'
+import VTC_CameraRoll from './app/components/camera/VTC_CameraRoll'
+
 const InnerNavigator = DrawerNavigator (
 {
-  menu: {
-     screen: ProfilePage,
+  menubar: {
+     screen: FirstScreen,
   },
   MyFriends:{
      path:'/',
-     screen:MyFriends,
+     screen:SecondScreen,
   },
   AddFriends:{
      path:'/',
-     screen:AddFriends,
+     screen:ThirdScreen,
   },
   MemoriesReceived:{
      path:'/',
-     screen:MemoriesReceived,
+     screen:FourthScreen,
   },
+
+  Camera: {
+    path:'/',
+    screen: VTC_Camera,
+  },
+  UploadMemory: {
+    path:'/',
+    screen: VTC_CameraRoll,
+  },
+
   SignOut:{
-     screen:FirstPage,
+     path:'/',
+     screen:SeventhScreen
   },
 },
     {
-       initialRouteName: 'menu',
+       initialRouteName: 'menubar',
        drawerPosition:'left',
           drawerWidth: 250,
           contentOptions:{
-          activeTintColor:'#521452',
+          activeTintColor:'red',
        }
     }
 );
