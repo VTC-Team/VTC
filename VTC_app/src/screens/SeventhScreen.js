@@ -3,7 +3,7 @@ import { Button, Text, View, Image } from 'react-native';
 //import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Header} from 'react-native-elements';
 
-import FirstScreen from '../screens/FirstScreen';
+import MyFriends from '../screens/MyProfile';
 export default class SeventhScreen extends React.Component{
 		/*static navigationOptions={
 			drawerLabel:'Sign Out',

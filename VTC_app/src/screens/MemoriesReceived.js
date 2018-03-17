@@ -10,7 +10,7 @@ import * as firebase from "firebase";
 import Firebase from "../../includes/firebase/firebase.js";
 const { width } = Dimensions.get('window');
 
-import FirstScreen from '../screens/FirstScreen';
+import MyFriends from '../screens/MyProfile';
 export default class FourthScreen extends React.Component{
 		/*static navigationOptions={
 			drawerLabel:'Memories Sent',

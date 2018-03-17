@@ -18,7 +18,7 @@ import * as firebase from "firebase";
 import Firebase from "../../includes/firebase/firebase.js";
 import { StackNavigator } from 'react-navigation';
 
-import FirstScreen from '../screens/FirstScreen';
+import ProfilePage from '../screens/MyProfile';
 export default class Signup extends Component<{}>{
 
     constructor(props) {
@@ -48,7 +48,7 @@ export default class Signup extends Component<{}>{
                 name: this.state.name
             });
 
-            this.props.navigation.navigate("menu", {screen: "FirstScreen"});
+            this.props.navigation.navigate("menu", {screen: "ProfilePage"});
         }
         catch (error) {
             alert(error.toString())
@@ -61,7 +61,8 @@ export default class Signup extends Component<{}>{
 		return(
 			<View style={styles.container}>
 			<ScrollView>
-          <TextInput style={styles.inputBox}
+          <Text style={styles.createaccount}>Create Account</Text>
+          <TextInput style={styles.inputBoxfirst}
           underlineColorAndroid='rgba(0,0,0,0)'
           placeholder='Name'
           placeholderTextColor='#ffffff'
@@ -124,6 +125,11 @@ export default class Signup extends Component<{}>{
                 <Text style= {styles.buttonText}>Sign up</Text>
 			</TouchableOpacity>
 			</View>
+      <TouchableOpacity
+          onPress={() => navigate("login", {screen: "Login"})}
+          >
+          <Text style={styles.signupText}>Already have an account? </Text>
+      </TouchableOpacity>
 			</ScrollView>
 			</View>
 		)
@@ -137,7 +143,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
+inputBoxfirst:{
+  width:280,
+  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+  borderRadius: 50,
+  paddingHorizontal:13,
+  paddingVertical:12,
+  fontSize:16,
+  color: '#ffffff',
+  marginTop: 30,
+  marginBottom: 12,
+},
  signupTextCont:{
 	flexGrow: 1,
     alignItems: 'center',
@@ -145,10 +161,17 @@ const styles = StyleSheet.create({
     paddingVertical:16,
     flexDirection:'row'
 },
-
+createaccount:{
+   color:'#fff',
+   textAlign:'center',
+   fontSize:30,
+   marginTop: 40,
+   marginBottom: 0,
+},
 signupText:{
 	color:'rgba(255, 255, 255, 0.7)',
-	fontSize:16
+	fontSize:16,
+  textAlign:'center',
 },
 
 signupButton:{

@@ -4,7 +4,7 @@ import { StyleSheet,Button, Text, View, Image, ScrollView } from 'react-native';
 import {Header} from 'react-native-elements';
 
 import SearchBar from '../components/SearchBar';
-import FirstScreen from '../screens/FirstScreen';
+import MyProfile from '../screens/MyProfile';
 
 import * as firebase from "firebase";
 import Firebase from "../../includes/firebase/firebase.js";
@@ -57,21 +57,20 @@ export default class ThirdScreen extends React.Component{
 					</MaterialIcons>
 				);
 			}
-		}*/
+        }*/
 		render(){
 			return (<View style={{flex:1,backgroundColor: '#000a12'}}>
-			<Header 
+			<Header
 			rightComponent={{ icon: 'menu', onPress: () => this.props.navigation.navigate('DrawerOpen'), color: '#fff' }}
-	        centerComponent={{ text: 'Add Friends', 
+	        centerComponent={{ text: 'Add Friends',
 	        						  style:{fontSize: 18, color:'white'} }}
-	        leftComponent={{ icon: 'home', onPress: () => this.props.navigation.navigate("menu", {screen: "FirstScreen"}), color: '#fff' }}
-	        outerContainerStyles={{backgroundColor:'#455a64'}}
+	        leftComponent={{ icon: 'home', onPress: () => this.props.navigation.navigate("menu", {screen: "MyProfile"}), color: '#fff' }}
+	        outerContainerStyles={{backgroundColor:'#002633'}}
     		/>
 
             <SearchBar onPressSearch={this.onPressSearch}/>
 
             <ScrollView>
-    		<Text style={styles.welcome}>waddup</Text>
     		<Text style={styles.welcome}>{this.state.friend}</Text>
             </ScrollView>
 			</View>
@@ -83,18 +82,13 @@ export default class ThirdScreen extends React.Component{
 
 const styles = StyleSheet.create({
 welcome: {
-        fontFamily: "Times New Roman",
-        fontSize: 15,
-        fontWeight: 'bold',
-        fontStyle: 'italic',
-        textAlign: "center",
+        fontSize: 20,
+        fontWeight: 'normal',
+        textAlign: "left",
         color: "#B1B1B1",
-        marginTop:0,
+        marginTop:20,
         marginRight:0,
-        marginLeft: 0,
-        marginBottom:0
+        marginLeft: 30,
+        marginBottom:5
 },
 });
-
-
-
