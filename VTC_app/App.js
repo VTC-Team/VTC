@@ -6,36 +6,41 @@ import FirstPage from './src/FirstPage/FirstPage';
 import Login from './src/pages/Login';
 import Signup from './src/pages/Signup';
 
-import FirstScreen from './src/screens/FirstScreen';
-import SecondScreen from './src/screens/SecondScreen';
-import ThirdScreen from './src/screens/ThirdScreen';
-import FourthScreen from './src/screens/FourthScreen';
-import FifthScreen from './src/screens/FifthScreen';
-import SixthScreen from './src/screens/SixthScreen';
+// import FirstScreen from './src/screens/FirstScreen';
+// import SecondScreen from './src/screens/SecondScreen';
+// import ThirdScreen from './src/screens/ThirdScreen';
+// import FourthScreen from './src/screens/FourthScreen';
+// import FifthScreen from './src/screens/FifthScreen';
+// import SixthScreen from './src/screens/SixthScreen';
+// import SeventhScreen from './src/screens/SeventhScreen';
+// import SearchBar from './src/components/SearchBar';
+
+import ProfilePage from './src/screens/ProfilePage';
+import MyFriends from './src/screens/MyFriends';
+import AddFriends from './src/screens/AddFriends';
+import MemoriesReceived from './src/screens/MemoriesReceived';
+import UploadMemory from './src/screens/UploadMemory';
+import Camera from './src/screens/Camera';
 import SeventhScreen from './src/screens/SeventhScreen';
 import SearchBar from './src/components/SearchBar';
 
 import VTC_Camera from './app/components/camera/VTC_Camera'
 import VTC_CameraRoll from './app/components/camera/VTC_CameraRoll'
 
+
 const InnerNavigator = DrawerNavigator (
 {
-  menubar: {
-     screen: FirstScreen,
+  menu: {
+     screen: ProfilePage,
   },
   MyFriends:{
      path:'/',
-     screen:SecondScreen,
+     screen:MyFriends,
   },
   AddFriends:{
      path:'/',
-     screen:ThirdScreen,
+     screen:AddFriends,
   },
-  MemoriesReceived:{
-     path:'/',
-     screen:FourthScreen,
-  },
-
   Camera: {
     path:'/',
     screen: VTC_Camera,
@@ -44,18 +49,20 @@ const InnerNavigator = DrawerNavigator (
     path:'/',
     screen: VTC_CameraRoll,
   },
-
-  SignOut:{
+  MemoriesReceived:{
      path:'/',
-     screen:SeventhScreen
+     screen:MemoriesReceived,
+  },
+  SignOut:{
+     screen:FirstPage,
   },
 },
     {
-       initialRouteName: 'menubar',
+       initialRouteName: 'menu',
        drawerPosition:'left',
           drawerWidth: 250,
           contentOptions:{
-          activeTintColor:'red',
+          activeTintColor:'#521452',
        }
     }
 );
