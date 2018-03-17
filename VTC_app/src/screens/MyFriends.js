@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Button, Text, View, Image, ScrollView } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+//import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Header} from 'react-native-elements';
 
 import SearchBar from '../components/SearchBar';
@@ -34,6 +34,20 @@ export default class SecondScreen extends React.Component{
                    });
 
         }
+
+		/*static navigationOptions={
+			drawerLabel:'My Friends',
+			drawerIcon:({tintColor})=>{
+				return(
+					<MaterialIcons
+					name="account-circle"
+					size={24}
+					style={{color: tintColor}}
+					>
+					</MaterialIcons>
+				);
+			}
+        }*/
 		render(){
 			return <View style={{flex:1,backgroundColor: '#000a12'}}>
 			<Header

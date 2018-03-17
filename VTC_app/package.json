@@ -9,6 +9,7 @@
   "dependencies": {
     "firebase": "^4.10.1",
     "node-adb": "^0.1.6",
+    "npm": "^5.7.1",
     "react": "16.2.0",
     "react-native": "0.52.2",
     "react-native-camera": "^0.13.0",

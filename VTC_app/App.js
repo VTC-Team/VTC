@@ -11,12 +11,12 @@ import MyFriends from './src/screens/MyFriends';
 import AddFriends from './src/screens/AddFriends';
 import MemoriesReceived from './src/screens/MemoriesReceived';
 import UploadMemory from './src/screens/UploadMemory';
+import SixthScreen from './src/screens/SixthScreen';
 import SeventhScreen from './src/screens/SeventhScreen';
 import SearchBar from './src/components/SearchBar';
 
 import VTC_Camera from './app/components/camera/VTC_Camera'
 import VTC_CameraRoll from './app/components/camera/VTC_CameraRoll'
-
 
 const InnerNavigator = DrawerNavigator (
 {
@@ -35,6 +35,7 @@ const InnerNavigator = DrawerNavigator (
      path:'/',
      screen:MemoriesReceived,
   },
+
   Camera: {
     path:'/',
     screen: VTC_Camera,
@@ -43,13 +44,14 @@ const InnerNavigator = DrawerNavigator (
     path:'/',
     screen: VTC_CameraRoll,
   },
-  MemoriesReceived:{
+
+  SignOut:{
      path:'/',
      screen:FirstPage,
   },
 },
     {
-       initialRouteName: 'menu',
+       initialRouteName: 'menubar',
        drawerPosition:'left',
           drawerWidth: 250,
           contentOptions:{
