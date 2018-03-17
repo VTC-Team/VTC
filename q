@@ -1,0 +1,249 @@
+[33mcommit 3f85d154bdad6610a2fc7d2e8b0dc8aea292302f[m
+Author: Ruchi Sheth <rjsheth@ucsc.edu>
+Date:   Fri Mar 16 16:00:14 2018 -0700
+
+    got rid of checkbox
+
+[33mcommit 8882bdab5298c94d1f5fef579c209fb02c3732ea[m
+Author: Ruchi Sheth <rjsheth@ucsc.edu>
+Date:   Thu Mar 15 21:36:12 2018 -0700
+
+    finalized UI that needs to be merged with camera
+
+[33mcommit d5f3774664d1a64fc92e5e070201e7f82d4ac9ea[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Thu Mar 8 21:03:09 2018 -0800
+
+    Minor styling changes
+    
+    Camera roll upload button from text to TouchableHighlight
+
+[33mcommit f832b7ca136823b63fb86b5acfd6961f971cee1a[m
+Merge: 50fe468 34a7857
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Thu Mar 8 20:49:24 2018 -0800
+
+    Merge branch 'Firebase'
+
+[33mcommit 34a785793059a685371209c42e07e487f382e8e9[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Thu Mar 8 20:48:16 2018 -0800
+
+    Merged with branch user-interface1, added styling and header to camera roll and camera
+
+[33mcommit 50fe468e4f04a7ccc59e387d69de332c6ba14b93[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Tue Mar 6 23:47:52 2018 -0800
+
+    Added sprint 4 plan
+
+[33mcommit 7c7b31e556b35af6139fea323e12ac0ddf499404[m
+Author: TheLizette <32748021+TheLizette@users.noreply.github.com>
+Date:   Mon Mar 5 19:33:17 2018 -0800
+
+    Delete logo.png
+
+[33mcommit 2245dd7608b2f0502c84576fe73cfed9454fc821[m
+Author: TheLizette <32748021+TheLizette@users.noreply.github.com>
+Date:   Mon Mar 5 19:32:41 2018 -0800
+
+    Add files via upload
+
+[33mcommit 2e0b1d22cf8c8f033df4b0211df4f36204a560a2[m
+Author: Ruchi Sheth <rjsheth@ucsc.edu>
+Date:   Sun Mar 4 22:40:20 2018 -0800
+
+    Add files via upload
+
+[33mcommit 8d606a3e352640310a9e720fdf4c5aa337ba093d[m
+Merge: f9f9f5a 8528c5b
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Sun Feb 25 13:27:27 2018 -0800
+
+    Merge branch 'S1-camera-api' into Firebase
+    
+    Fixed merge conflicts
+
+[33mcommit 8528c5b22de015b64c78951b3f92307ec0b3c159[m
+Merge: 2b90652 645f45d
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Sun Feb 25 12:54:42 2018 -0800
+
+    Merge branch 'S1-Camera-api' of https://github.com/VTC-Team/VTC into S1-Camera-api
+
+[33mcommit 2b9065276d99202bb365446e507dfd006a590798[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Sun Feb 25 12:47:20 2018 -0800
+
+    Merged with Michael's firebase code, prep for merging branches
+    
+    Sent code to Michael, he added Firebase uploading. Took his code and made minor changes and fixes to prepare for merging of this branch to the Firebase branch.
+
+[33mcommit f9f9f5a363ad9c97dd84cbdbac21eb12fb6c65ba[m
+Author: Michael Chan <miachan@ucsc.edu>
+Date:   Sun Feb 25 11:55:08 2018 -0800
+
+    Image upload to Firebase working
+    
+    NOTE: LIKELY NEED TO INSTALL MODULES
+    firebase
+    react-native-camera
+    react-native-fetch-blob
+    AND react-native link
+    
+    Added functionality in VTC_app\app\components\camera\VTC_CameraRoll.js
+    Linked packages/modules with 'react-native link' in node js cmd:
+       VTC_app\android\app\build.gradle
+       VTC_app\android\settings.gradle
+       VTC_app\android\app\src\main\java\com\vtc_app\MainApplication.java
+    Referenced:
+       https://github.com/CodeLinkIO/Firebase-Image-Upload-React-Native/blob/master/demo.js
+       https://github.com/wkh237/react-native-fetch-blob
+
+[33mcommit 645f45dfaa671995f3714e6b86cb3cecfff135d9[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Fri Feb 23 16:04:56 2018 -0800
+
+    Firebase installed
+
+[33mcommit 4a7d389a266a172866136ce337c6d011ed47cf5a[m
+Author: Ruchi Sheth <rjsheth@ucsc.edu>
+Date:   Fri Feb 23 15:59:46 2018 -0800
+
+    -moved Sprint 3 into Document folder
+
+[33mcommit 6111c04cc58d435b1e4c00e787476bbfd8e2f0a2[m
+Author: Austin Yen <austin_yen@yahoo.com>
+Date:   Thu Feb 22 23:51:18 2018 -0800
+
+    Minor fix to camera roll
+
+[33mcommit 4bc16e4e6fb16c61dbb77199a7bd8bd4fc62fa22[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Thu Feb 22 02:22:46 2018 -0800
+
+    Can select more than one photo. Photo uri packaging untested
+
+[33mcommit 96d1c70c7ebf8168af46d591ffd2bafd7dbd6d7c[m
+Author: Ruchi Sheth <rjsheth@ucsc.edu>
+Date:   Wed Feb 21 00:20:39 2018 -0800
+
+    Add files via upload
+
+[33mcommit a1f88514df8611938e67857925420c9687176262[m
+Author: Ruchi Sheth <rjsheth@ucsc.edu>
+Date:   Tue Feb 20 23:55:53 2018 -0800
+
+    Sprint3 plan added
+
+[33mcommit 776bae4c94cc314e81614bdf810784c5957ba539[m
+Author: Austin Yen <austin_yen@yahoo.com>
+Date:   Sun Feb 18 23:52:17 2018 -0800
+
+    Sprint 2 Report
+
+[33mcommit a5bbef63c58e7ccb4afc1bbc20ecc60e18b4823f[m
+Author: Michael Chan <miachan@ucsc.edu>
+Date:   Thu Feb 15 13:53:43 2018 -0800
+
+    Firebase functions
+    
+    Functions for:
+    Firebase initialization, complete with keys and ids associated with firebase project
+    Authentication: signin,signout,create
+    Credentials: email verification, email/pass update
+    Database: Database value set/update
+    Account Link: link email with google account, TODO facebook link
+    Storage: Upload images to Firebase storage instance
+
+[33mcommit ab91892de19ea6f065c69bdd8eb94df03f43fbf7[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Wed Feb 14 20:46:46 2018 -0800
+
+    New camera roll, can select one photo at a time
+
+[33mcommit 552bff565d45cda7f7cf33aa52844b1f34ad5249[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Sat Feb 10 15:20:41 2018 -0800
+
+    Integrated react-navigation
+
+[33mcommit e5954490d13c19b06bc7034c9ccade2a4fdefc28[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Mon Feb 5 22:34:28 2018 -0800
+
+    Final changes to plan
+    
+    People were late.
+
+[33mcommit 6c10c8caef9070caa854dc9073b5550edfa94948[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Mon Feb 5 00:28:38 2018 -0800
+
+    Delete Sprint 2 Plan
+
+[33mcommit f5d3d446475c0ef2f4dbadddd16c66d2485aec55[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Mon Feb 5 00:28:12 2018 -0800
+
+    Sprint 2 Plan
+
+[33mcommit bb12e5be56b48043f44294f1eab7d9c613dd3834[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Mon Feb 5 00:27:42 2018 -0800
+
+    Sprint 2 Plan
+
+[33mcommit d555e3aeaf6a53fbbb3b4fdc4957540d99eb06b8[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Sun Feb 4 23:37:57 2018 -0800
+
+    Sprint 1 report
+
+[33mcommit d74598be5ffedae529d7c75d8840653cc019d39d[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Sun Feb 4 04:15:18 2018 -0800
+
+    navigation to camera or camera roll
+
+[33mcommit c41070181b55aca1914f88e53f6384b8ff592fc2[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Sat Feb 3 20:38:13 2018 -0800
+
+    Split camera to separate component
+
+[33mcommit 57f341e5ecabf12219b0aa65ce44e1e672c2c861[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Sat Feb 3 17:34:41 2018 -0800
+
+    renamed project files
+
+[33mcommit b0d5b5fa2692ad58d5ee8cadc4d7bfb313defba0[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Thu Feb 1 02:39:09 2018 -0800
+
+    Camera working
+
+[33mcommit 0cd4477c513d42639d7d01f4e69db8fddeed884a[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Thu Feb 1 02:04:33 2018 -0800
+
+    Installed react-native-camera
+
+[33mcommit 1b5f1a861b10b07cd6a11eebfb36f84fa4e1dae3[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Wed Jan 24 23:23:16 2018 -0800
+
+    Sprint 1 plan
+
+[33mcommit 7539b68e117c83666e9519430fb135cc555bd344[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Sun Jan 21 16:57:56 2018 -0800
+
+    Release plan
+
+[33mcommit 64433d2c2222d39312b3539acb9e20f672ae5d71[m
+Author: Austin Yen <auyen@ucsc.edu>
+Date:   Sun Jan 21 16:49:00 2018 -0800
+
+    Initial commit

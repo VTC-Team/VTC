@@ -5,19 +5,6 @@ import {Header} from 'react-native-elements';
 
 import MyFriends from '../screens/MyProfile';
 export default class SeventhScreen extends React.Component{
-		/*static navigationOptions={
-			drawerLabel:'Sign Out',
-			drawerIcon:({tintColor})=>{
-				return(
-					<MaterialIcons
-					name="lock"
-					size={24}
-					style={{color: tintColor}}
-					>
-					</MaterialIcons>
-				);
-			}
-		}*/
 		render(){
 			return <View style={{flex:1,backgroundColor: '#000a12'}}>
 			<Header 
